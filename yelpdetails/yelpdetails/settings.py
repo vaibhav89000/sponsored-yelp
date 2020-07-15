@@ -14,7 +14,7 @@ BOT_NAME = 'yelpdetails'
 SPIDER_MODULES = ['yelpdetails.spiders']
 NEWSPIDER_MODULE = 'yelpdetails.spiders'
 
-
+# SELENIUM_DRIVER_ARGUMENTS=['--no-args']
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36'
 
@@ -102,3 +102,7 @@ SELENIUM_DRIVER_ARGUMENTS=[]  # '--headless' if using chrome instead of firefox
 # CLOSESPIDER_ITEMCOUNT = 1000
 # HTTPCACHE_ENABLED = True
 # HTTPCACHE_EXPIRATION_SECS = 3600
+
+# SELENIUM_DRIVER_NAME = 'firefox'
+# SELENIUM_DRIVER_EXECUTABLE_PATH = which('geckodriver')
+# SELENIUM_DRIVER_ARGUMENTS=['-headless']
