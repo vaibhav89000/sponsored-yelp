@@ -20,6 +20,7 @@ NEWSPIDER_MODULE = 'yelpdetails.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
+# SELENIUM_DRIVER_ARGUMENTS=['--no-args']
 # PROXY_POOL_ENABLED = True
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 # CONCURRENT_REQUESTS = 32
