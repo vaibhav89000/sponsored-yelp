@@ -239,171 +239,176 @@ class YelpspiderSpider(scrapy.Spider):
         # catg = response.meta['catg']
         # duplicateurl = response.meta['duplicateurl']
 
-        if (response.url == 'https://www.google.com/'):
-            print('\n'*2)
-            print(self.webname)
-            # print(category)
-            print('\n'*2)
-            self.name=str(self.name)
-            a=self.name
-            self.name=a.strip()
-            if(self.name!=''):
-                finalemail = response.meta['finalemail']
+        # if (response.url == 'https://www.google.com/'):
+        #     print()
+        #     print()
+        #     print(self.webname)
+        #     # print(category)
+        #     print()
+        #     print()
+        #     self.name=str(self.name)
+        #     a=self.name
+        #     self.name=a.strip()
+        #     if(self.name!=''):
+        #         finalemail = response.meta['finalemail']
+        #
+        #         Yelpdetails_Item['Name'] = self.name
+        #         Yelpdetails_Item['website_link'] = self.web_link
+        #         Yelpdetails_Item['website_name'] = self.webname
+        #         Yelpdetails_Item['phone'] = self.phone
+        #         Yelpdetails_Item['Direction'] = self.direction
+        #         Yelpdetails_Item['category'] = 'Sponsored Result'
+        #         Yelpdetails_Item['find'] = find
+        #         Yelpdetails_Item['near'] = near
+        #         Yelpdetails_Item['website'] = self.website
+        #
+        #         Yelpdetails_Item['email'] = "-"
+        #
+        #         print()
+        #         print()
+        #         print(len(finalemail))
+        #         print(type(finalemail))
+        #         print()
+        #         print()
+        #         if (len(finalemail) == 0):
+        #             yield Yelpdetails_Item
+        #         else:
+        #             if (len(finalemail) < 5):
+        #                 length = len(finalemail)
+        #             else:
+        #                 length = 5
+        #             for i in range(0, length):
+        #                 Yelpdetails_Item['email'] = finalemail[i]
+        #                 yield Yelpdetails_Item
+        #
+        #     if len(page) != 0:
+        #
+        #         a = page[0]
+        #         page.pop(0)
+        #         yield SeleniumRequest(
+        #             url=a,
+        #             wait_time=1000,
+        #             screenshot=True,
+        #             callback=self.scrapepages,
+        #             errback=self.errback_scrapepages_all,
+        #             meta={'page': page, 'index': index, 'find': find, 'near': near},
+        #             dont_filter=True
+        #         )
+        #
+        #     else:
+        #         yield SeleniumRequest(
+        #             url="https://www.yelp.com/",
+        #             wait_time=1000,
+        #             screenshot=True,
+        #             callback=self.parse,
+        #             errback=self.error_yelp,
+        #             meta={'index': index},
+        #             dont_filter=True
+        #         )
+        #
+        # else:
 
-                Yelpdetails_Item['Name'] = self.name
-                Yelpdetails_Item['website_link'] = self.web_link
-                Yelpdetails_Item['website_name'] = self.webname
-                Yelpdetails_Item['phone'] = self.phone
-                Yelpdetails_Item['Direction'] = self.direction
-                Yelpdetails_Item['category'] = 'Sponsored Result'
-                Yelpdetails_Item['find'] = find
-                Yelpdetails_Item['near'] = near
-                Yelpdetails_Item['website'] = self.website
+        try:
+            name = response_obj.xpath("//h1/text()").get()
+        except:
+            name = None
 
-                Yelpdetails_Item['email'] = "-"
+        try:
+            webname = response_obj.xpath(
+                "//section[1 or 2]/div/div[1]/div/div[2]/p[2]/a[contains(text(),'.com')]/text()").get()
 
-                print('\n'*2)
-                print(len(finalemail))
-                print(type(finalemail))
-                print('\n'*2)
-                if (len(finalemail) == 0):
-                    yield Yelpdetails_Item
-                else:
-                    if (len(finalemail) < 5):
-                        length = len(finalemail)
-                    else:
-                        length = 5
-                    for i in range(0, length):
-                        Yelpdetails_Item['email'] = finalemail[i]
-                        yield Yelpdetails_Item
+        except:
+            webname = None
 
-            if len(page) != 0:
-
-                a = page[0]
-                page.pop(0)
-                yield SeleniumRequest(
-                    url=a,
-                    wait_time=1000,
-                    screenshot=True,
-                    callback=self.scrapepages,
-                    errback=self.errback_scrapepages_all,
-                    meta={'page': page, 'index': index, 'find': find, 'near': near},
-                    dont_filter=True
-                )
-
-            else:
-                yield SeleniumRequest(
-                    url="https://www.yelp.com/",
-                    wait_time=1000,
-                    screenshot=True,
-                    callback=self.parse,
-                    errback=self.error_yelp,
-                    meta={'index': index},
-                    dont_filter=True
-                )
-
-        else:
-
+        if (webname != None):
             try:
-                name = response_obj.xpath("//h1/text()").get()
+                web_link = response_obj.xpath(
+                    "//section[1 or 2]/div/div[1]/div/div[2]/p[2]/a[contains(text(),'.com')]/@href").get()
             except:
-                name = None
-
-            try:
-                webname = response_obj.xpath(
-                    "//section[1 or 2]/div/div[1]/div/div[2]/p[2]/a[contains(text(),'.com')]/text()").get()
-
-            except:
-                webname = None
-
-            if (webname != None):
-                try:
-                    web_link = response_obj.xpath(
-                        "//section[1 or 2]/div/div[1]/div/div[2]/p[2]/a[contains(text(),'.com')]/@href").get()
-                except:
-                    web_link = None
-
-                try:
-                    phone = response_obj.xpath(
-                        "//section[1 or 2]/div/div/div/div[2]/p[2][contains(text(),'0') or contains(text(),'1') or contains(text(),'2') or contains(text(),'3') or contains(text(),'4') or contains(text(),'5') or contains(text(),'6') or contains(text(),'7') or contains(text(),'8') or contains(text(),'9')]/text()").get()
-                except:
-                    phone = None
-                try:
-                    direction = response_obj.xpath(
-                        "//section[1 or 2]/div/div[3 or 2]/div/div[2]/p/a[contains(text(),'Get Directions')]/@href").get()
-                except:
-                    direction = None
-            else:
                 web_link = None
-                try:
-                    phone = response_obj.xpath(
-                        "//section[1 or 2]/div/div/div/div[2]/p[2][contains(text(),'0') or contains(text(),'1') or contains(text(),'2') or contains(text(),'3') or contains(text(),'4') or contains(text(),'5') or contains(text(),'6') or contains(text(),'7') or contains(text(),'8') or contains(text(),'9')]/text()").get()
-                except:
-                    phone = None
-                try:
-                    direction = response_obj.xpath(
-                        "//section[1 or 2]/div/div[3 or 2]/div/div[2]/p/a[contains(text(),'Get Directions')]/@href").get()
-                except:
-                    direction = None
 
-            # try:
-            #     category = category
-            # except:
-            #     category = 'All Results'
-            print()
-            print(name)
-            print(direction)
-            print(web_link)
-            print(webname)
-            print(phone)
-            # print(category)
-            print()
-            if (name == None):
-                name = "-"
+            try:
+                phone = response_obj.xpath(
+                    "//section[1 or 2]/div/div/div/div[2]/p[2][contains(text(),'0') or contains(text(),'1') or contains(text(),'2') or contains(text(),'3') or contains(text(),'4') or contains(text(),'5') or contains(text(),'6') or contains(text(),'7') or contains(text(),'8') or contains(text(),'9')]/text()").get()
+            except:
+                phone = None
+            try:
+                direction = response_obj.xpath(
+                    "//section[1 or 2]/div/div[3 or 2]/div/div[2]/p/a[contains(text(),'Get Directions')]/@href").get()
+            except:
+                direction = None
+        else:
+            web_link = None
+            try:
+                phone = response_obj.xpath(
+                    "//section[1 or 2]/div/div/div/div[2]/p[2][contains(text(),'0') or contains(text(),'1') or contains(text(),'2') or contains(text(),'3') or contains(text(),'4') or contains(text(),'5') or contains(text(),'6') or contains(text(),'7') or contains(text(),'8') or contains(text(),'9')]/text()").get()
+            except:
+                phone = None
+            try:
+                direction = response_obj.xpath(
+                    "//section[1 or 2]/div/div[3 or 2]/div/div[2]/p/a[contains(text(),'Get Directions')]/@href").get()
+            except:
+                direction = None
 
-            if (web_link == None):
-                web_link = "-"
-            else:
-                web_link = f"https://www.yelp.com{web_link}"
+        # try:
+        #     category = category
+        # except:
+        #     category = 'All Results'
+        print()
+        print(name)
+        print(direction)
+        print(web_link)
+        print(webname)
+        print(phone)
+        # print(category)
+        print()
+        if (name == None):
+            name = "-"
 
-            if (direction == None):
-                direction = "-"
-            else:
-                direction = f"https://www.yelp.com{direction}"
+        if (web_link == None):
+            web_link = "-"
+        else:
+            web_link = f"https://www.yelp.com{web_link}"
 
-            if (webname == None):
-                webname = "-"
+        if (direction == None):
+            direction = "-"
+        else:
+            direction = f"https://www.yelp.com{direction}"
 
-            if (phone == None):
-                phone = "-"
+        if (webname == None):
+            webname = "-"
 
-            self.name = name
-            self.web_link = web_link
-            self.webname = webname
-            self.phone = phone
-            self.direction = direction
+        if (phone == None):
+            phone = "-"
 
-            if (web_link != "-"):
-                yield SeleniumRequest(
-                    url=web_link,
-                    wait_time=1000,
-                    screenshot=True,
-                    callback=self.emailtrack,
-                    errback=self.errback_emailtrack,
-                    dont_filter=True,
-                    meta={'page': page, 'index': index, 'find': find, 'near': near}
-                )
-            else:
-                finalemail = []
-                yield SeleniumRequest(
-                    url='https://www.google.com/',
-                    wait_time=1000,
-                    screenshot=True,
-                    callback=self.scrapepages,
-                    errback=self.error_google,
-                    dont_filter=True,
-                    meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
-                )
+        self.name = name
+        self.web_link = web_link
+        self.webname = webname
+        self.phone = phone
+        self.direction = direction
+
+        if (web_link != "-"):
+            yield SeleniumRequest(
+                url=web_link,
+                wait_time=1000,
+                screenshot=True,
+                callback=self.emailtrack,
+                errback=self.errback_emailtrack,
+                dont_filter=True,
+                meta={'page': page, 'index': index, 'find': find, 'near': near}
+            )
+        else:
+            driver = response.meta['driver']
+            finalemail = []
+            yield SeleniumRequest(
+                url = driver.current_url,
+                wait_time=1000,
+                screenshot=True,
+                callback=self.data_save,
+                # errback=self.error_google,
+                dont_filter=True,
+                meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
+            )
 
     def emailtrack(self, response):
         driver = response.meta['driver']
@@ -446,12 +451,13 @@ class YelpspiderSpider(scrapy.Spider):
             )
         else:
             finalemail=[]
+            driver = response.meta['driver']
             yield SeleniumRequest(
-                url='https://www.google.com/',
+                url = driver.current_url,
                 wait_time=1000,
                 screenshot=True,
-                callback=self.scrapepages,
-                errback=self.error_google,
+                callback=self.data_save,
+                # errback=self.error_google,
                 dont_filter=True,
                 meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
             )
@@ -523,12 +529,13 @@ class YelpspiderSpider(scrapy.Spider):
             print('\n'*2)
             print('final', finalemail)
             print('\n'*2)
+
             yield SeleniumRequest(
-                url='https://www.google.com/',
+                url=driver.current_url,
                 wait_time=1000,
                 screenshot=True,
-                callback=self.scrapepages,
-                errback=self.error_google,
+                callback=self.data_save,
+                # errback=self.error_google,
                 dont_filter=True,
                 meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
             )
@@ -580,7 +587,7 @@ class YelpspiderSpider(scrapy.Spider):
                 url='https://www.google.com/',
                 wait_time=1000,
                 screenshot=True,
-                callback=self.scrapepages,
+                callback=self.data_save,
                 errback=self.error_google,
                 dont_filter=True,
                 meta=meta
@@ -600,7 +607,7 @@ class YelpspiderSpider(scrapy.Spider):
             url='https://www.google.com/',
             wait_time=1000,
             screenshot=True,
-            callback=self.scrapepages,
+            callback=self.data_save,
             errback=self.error_google,
             dont_filter=True,
             meta=meta
@@ -746,14 +753,91 @@ class YelpspiderSpider(scrapy.Spider):
             dont_filter=True
         )
 
-    def error_google(self,failure):
-        meta = failure.request.meta
-        yield SeleniumRequest(
-            url='https://www.google.com/',
-            wait_time=1000,
-            screenshot=True,
-            callback=self.scrapepages,
-            errback=self.error_google,
-            dont_filter=True,
-            meta=meta
-        )
+    # def error_google(self,failure):
+    #     meta = failure.request.meta
+    #     yield SeleniumRequest(
+    #         url='https://www.google.com/',
+    #         wait_time=1000,
+    #         screenshot=True,
+    #         callback=self.scrapepages,
+    #         errback=self.error_google,
+    #         dont_filter=True,
+    #         meta=meta
+    #     )
+
+
+    def data_save(self,response):
+        Yelpdetails_Item = YelpdetailsItem()
+        driver = response.meta['driver']
+        html = driver.page_source
+        response_obj = Selector(text=html)
+        page = response.meta['page']
+        # category = response.meta['category']
+        index = response.meta['index']
+        find = response.meta['find']
+        near = response.meta['near']
+        # catg = response.meta['catg']
+        # duplicateurl = response.meta['duplicateurl']
+
+
+        print('\n'*2)
+        print(self.webname)
+        # print(category)
+        print('\n'*2)
+        self.name = str(self.name)
+        a = self.name
+        self.name = a.strip()
+        if (self.name != ''):
+            finalemail = response.meta['finalemail']
+
+            Yelpdetails_Item['Name'] = self.name
+            Yelpdetails_Item['website_link'] = self.web_link
+            Yelpdetails_Item['website_name'] = self.webname
+            Yelpdetails_Item['phone'] = self.phone
+            Yelpdetails_Item['Direction'] = self.direction
+            Yelpdetails_Item['category'] = 'Sponsored Result'
+            Yelpdetails_Item['find'] = find
+            Yelpdetails_Item['near'] = near
+            Yelpdetails_Item['website'] = self.website
+
+            Yelpdetails_Item['email'] = "-"
+
+            print('\n'*2)
+            print(len(finalemail))
+            print(type(finalemail))
+            print('\n'*2)
+            if (len(finalemail) == 0):
+                yield Yelpdetails_Item
+            else:
+                if (len(finalemail) < 5):
+                    length = len(finalemail)
+                else:
+                    length = 5
+                for i in range(0, length):
+                    Yelpdetails_Item['email'] = finalemail[i]
+                    yield Yelpdetails_Item
+
+        if len(page) != 0:
+
+            a = page[0]
+            page.pop(0)
+            yield SeleniumRequest(
+                url=a,
+                wait_time=1000,
+                screenshot=True,
+                callback=self.scrapepages,
+                errback=self.errback_scrapepages_all,
+                meta={'page': page, 'index': index, 'find': find, 'near': near},
+                dont_filter=True
+            )
+
+        else:
+            yield SeleniumRequest(
+                url="https://www.yelp.com/",
+                wait_time=1000,
+                screenshot=True,
+                callback=self.parse,
+                errback=self.error_yelp,
+                meta={'index': index},
+                dont_filter=True
+            )
