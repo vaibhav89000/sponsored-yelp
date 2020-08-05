@@ -616,7 +616,7 @@ class YelpspiderSpider(scrapy.Spider):
 
     def errback_numberofpages(self,failure):
         meta = failure.request.meta
-        page=meta['failure']
+        page=meta['page']
         near=meta['near']
         print()
         print('All pages in errback_numberofpages')
