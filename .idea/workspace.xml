@@ -2,14 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="febe2640-a0ec-4571-9b5c-ec599521be03" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/yelpdetails/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yelpdetails/location.txt" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/location.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yelpdetails/option.txt" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/option.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails.db" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails/items.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails/spiders/yelpspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails/spiders/yelpspider.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -23,10 +36,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../hotfrog/hotfrog" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../isearch/isearch" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\web scrapping\projects\yelp\yelp\yelpdetails" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\web scrapping\projects\yelp\yelp\yelpdetails" />
     </key>
@@ -61,17 +77,17 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="536" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1594470604653" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1596609428408">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1596953821761">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596609428408" />
-    <state x="277" y="56" key="SettingsEditor" timestamp="1594155473182">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1596953821761" />
+    <state x="277" y="56" key="SettingsEditor" timestamp="1596702630395">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1594155473182" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1596646267549">
+    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1596702630395" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1596950446757">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1596646267549" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1596950446757" />
   </component>
 </project>

@@ -25,6 +25,7 @@ class YelpspiderSpider(scrapy.Spider):
     phone = ""
     direction = ""
     NoSponsored = []
+    competitor=[]
 
     def start_requests(self):
         index = 0
@@ -112,12 +113,12 @@ class YelpspiderSpider(scrapy.Spider):
             currpage = 0
             duplicate_sponsored = []
             yield SeleniumRequest(
-                url=driver.current_url,
+                url="https://www.google.com/maps",
                 wait_time=1000,
                 screenshot=True,
-                callback=self.numberofpages,
+                callback=self.google_maps,
                 meta={'page': page, 'index': index, 'find': find[ind], 'near': near[ind], 'numpages': numpages,
-                      'currpage': currpage, 'duplicate_sponsored': duplicate_sponsored},
+                      'currpage': currpage, 'duplicate_sponsored': duplicate_sponsored,"yelp_url": driver.current_url},
                 dont_filter=True
             )
         else:
@@ -126,6 +127,56 @@ class YelpspiderSpider(scrapy.Spider):
             # file1.writelines(near)
             with open(file, "w") as file1:
                 file1.writelines(self.NoSponsored)
+
+
+    def google_maps(self,response):
+        driver = response.meta['driver']
+        self.competitor=[]
+        index = response.meta['index']
+        find = response.meta['find']
+        near = response.meta['near']
+        numpages = response.meta['numpages']
+        duplicate_sponsored = response.meta['duplicate_sponsored']
+        page = response.meta['page']
+        currpage = response.meta['currpage']
+        yelp_url = response.meta['yelp_url']
+
+
+        driver.find_element_by_xpath("//*[@id='searchboxinput']").clear()
+        search_input1 = driver.find_element_by_xpath("//*[@id='searchboxinput']")
+
+        search_input1.send_keys(find+" "+near)
+
+        search_button = driver.find_element_by_xpath('//*[@id="searchbox-searchbutton"]')
+        search_button.click()
+
+        time.sleep(7)
+
+        driver = response.meta['driver']
+        html = driver.page_source
+        response_obj = Selector(text=html)
+
+        details = response_obj.xpath("//*[@id='pane']/div/div[1]/div/div/div[4]/div[1]/div/div[1]/div[1]/div[1]/div[1]/div[2]/h3")
+
+        for idx,detail in enumerate(details):
+            name = detail.xpath(".//span/text()").get()
+            if(idx>=2 and len(self.competitor)<4):
+                self.competitor.append(name)
+            if(len(self.competitor)==4):
+                break
+        print(self.competitor)
+        time.sleep(30)
+
+        yield SeleniumRequest(
+            url=yelp_url,
+            wait_time=1000,
+            screenshot=True,
+            callback=self.numberofpages,
+            meta={'page': page, 'index': index, 'find': find, 'near': near, 'numpages': numpages,
+                  'currpage': currpage, 'duplicate_sponsored': duplicate_sponsored},
+            dont_filter=True
+        )
+
 
     def numberofpages(self, response):
         driver = response.meta['driver']
@@ -588,7 +639,7 @@ class YelpspiderSpider(scrapy.Spider):
                 wait_time=1000,
                 screenshot=True,
                 callback=self.data_save,
-                errback=self.error_google,
+                # errback=self.error_google,
                 dont_filter=True,
                 meta=meta
             )
@@ -608,7 +659,7 @@ class YelpspiderSpider(scrapy.Spider):
             wait_time=1000,
             screenshot=True,
             callback=self.data_save,
-            errback=self.error_google,
+            # errback=self.error_google,
             dont_filter=True,
             meta=meta
         )
@@ -799,6 +850,16 @@ class YelpspiderSpider(scrapy.Spider):
             Yelpdetails_Item['find'] = find
             Yelpdetails_Item['near'] = near
             Yelpdetails_Item['website'] = self.website
+
+            Yelpdetails_Item['competitor1'] = '-'
+            Yelpdetails_Item['competitor2'] = '-'
+            Yelpdetails_Item['competitor3'] = '-'
+            Yelpdetails_Item['competitor4'] = '-'
+
+            for idx,map_name in enumerate(self.competitor):
+                Yelpdetails_Item['competitor{}'.format(idx+1)] = map_name
+
+
 
             Yelpdetails_Item['email'] = "-"
 

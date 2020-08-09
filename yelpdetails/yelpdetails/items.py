@@ -19,6 +19,10 @@ class YelpdetailsItem(scrapy.Item):
     near = scrapy.Field()
     email = scrapy.Field()
     website = scrapy.Field()
+    competitor1 = scrapy.Field()
+    competitor2 = scrapy.Field()
+    competitor3 = scrapy.Field()
+    competitor4 = scrapy.Field()
 
 
 

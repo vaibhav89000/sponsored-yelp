@@ -1,8 +1,2 @@
 Phoenix
 Philadelphia pa
-San Antonio
-San Diego
-New York
-Los Angeles
-Chicago
-Houston
