@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="febe2640-a0ec-4571-9b5c-ec599521be03" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/yelpdetails/server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yelpdetails/location.txt" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/location.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yelpdetails/option.txt" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/option.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails.db" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails/items.py" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails/items.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails/pipelines.py" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails/pipelines.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yelpdetails/yelpdetails/spiders/yelpspider.py" beforeDir="false" afterPath="$PROJECT_DIR$/yelpdetails/yelpdetails/spiders/yelpspider.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,7 +29,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../isearch/isearch" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">

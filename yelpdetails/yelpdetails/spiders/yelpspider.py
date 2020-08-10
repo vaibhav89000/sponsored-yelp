@@ -456,7 +456,7 @@ class YelpspiderSpider(scrapy.Spider):
                 wait_time=1000,
                 screenshot=True,
                 callback=self.data_save,
-                # errback=self.error_google,
+                errback=self.error_google,
                 dont_filter=True,
                 meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
             )
@@ -508,7 +508,7 @@ class YelpspiderSpider(scrapy.Spider):
                 wait_time=1000,
                 screenshot=True,
                 callback=self.data_save,
-                # errback=self.error_google,
+                errback=self.error_google,
                 dont_filter=True,
                 meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
             )
@@ -586,7 +586,7 @@ class YelpspiderSpider(scrapy.Spider):
                 wait_time=1000,
                 screenshot=True,
                 callback=self.data_save,
-                # errback=self.error_google,
+                errback=self.error_google,
                 dont_filter=True,
                 meta={'page': page, 'index': index, 'find': find, 'near': near, 'finalemail': finalemail}
             )
@@ -639,7 +639,7 @@ class YelpspiderSpider(scrapy.Spider):
                 wait_time=1000,
                 screenshot=True,
                 callback=self.data_save,
-                # errback=self.error_google,
+                errback=self.error_google,
                 dont_filter=True,
                 meta=meta
             )
@@ -659,7 +659,7 @@ class YelpspiderSpider(scrapy.Spider):
             wait_time=1000,
             screenshot=True,
             callback=self.data_save,
-            # errback=self.error_google,
+            errback=self.error_google,
             dont_filter=True,
             meta=meta
         )
@@ -804,17 +804,17 @@ class YelpspiderSpider(scrapy.Spider):
             dont_filter=True
         )
 
-    # def error_google(self,failure):
-    #     meta = failure.request.meta
-    #     yield SeleniumRequest(
-    #         url='https://www.google.com/',
-    #         wait_time=1000,
-    #         screenshot=True,
-    #         callback=self.scrapepages,
-    #         errback=self.error_google,
-    #         dont_filter=True,
-    #         meta=meta
-    #     )
+    def error_google(self,failure):
+        meta = failure.request.meta
+        yield SeleniumRequest(
+            url='https://www.google.com/',
+            wait_time=1000,
+            screenshot=True,
+            callback=self.data_save,
+            errback=self.error_google,
+            dont_filter=True,
+            meta=meta
+        )
 
 
     def data_save(self,response):
