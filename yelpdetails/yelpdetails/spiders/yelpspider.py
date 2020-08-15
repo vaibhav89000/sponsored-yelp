@@ -194,6 +194,8 @@ class YelpspiderSpider(scrapy.Spider):
         print()
 
         details = response_obj.xpath('//*[@id="wrap"]/div[3]/div[2]/div/div[1]/div[1]/div[2]/div[2]/ul/li/div')
+        if (len(details) == 0):
+            details = response_obj.xpath('//div[2]/div[2]/ul/li/div')
         flag = 0
         for i, detail in enumerate(details):
 
